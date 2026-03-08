@@ -25,6 +25,21 @@ import Header from '../components/Header.astro';
         box-shadow: var(--box-shadow);
       }
 
+      .instructions {
+        border: 2px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 8px;
+        padding: 0.75em 1em;
+        margin-bottom: 1.5em;
+        font-size: 0.9em;
+      }
+      .instructions p {
+        margin: 0;
+      }
+      .instructions p + p {
+        margin-top: 0.5em;
+      }
+
       .message {
         margin-bottom: 0.5em;
         padding: 0.5em 0.75em;
@@ -82,6 +97,13 @@ import Header from '../components/Header.astro';
     <Header />
     <main>
       <p>Blog post: <a href="/blog/detecting-virtual-keyboards/">Detecting virtual keyboards</a></p>
+      <div class="instructions">
+        <p>Type in the box below and hit <kbd>Return</kbd></p>
+        <p>
+          On a physical keyboard, it should "send" the message,
+          while on a virtual keyboard it should insert a newline.
+        </p>
+      </div>
       <div class="messages"></div>
     </main>
     <form id="message-form">
