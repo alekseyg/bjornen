@@ -126,6 +126,7 @@ img {
 }
 code {
 	padding: 2px 5px;
+	font-size: 0.9em;
 	background-color: rgb(var(--gray-light));
 	border-radius: 2px;
 }
@@ -142,7 +143,8 @@ kbd {
 	line-height: 1.4;
 }
 pre {
-	padding: 1.5em;
+	padding: 1em;
+	font-size: 0.8em;
 	border-radius: 8px;
 }
 pre > code {
