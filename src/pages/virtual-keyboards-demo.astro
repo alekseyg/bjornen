@@ -20,7 +20,7 @@ import Header from '../components/Header.astro';
         left: 0;
         right: 0;
         background: var(--bg);
-        border-top: 1px solid rgb(var(--gray-light));
+        border-top: 2px solid var(--border);
         padding: 15px;
         box-shadow: var(--box-shadow);
       }
@@ -36,25 +36,40 @@ import Header from '../components/Header.astro';
 
       #message-form button {
         width: 100%;
-        padding: 0.5em;
+        padding: 0.5em 1em;
         background: var(--accent);
         color: #fff;
-        border: none;
+        border: 2px solid var(--border);
         border-radius: 8px;
+        box-shadow: var(--box-shadow);
+        font-family: inherit;
         font-size: 1em;
+        font-weight: 700;
         cursor: pointer;
+        transition: translate 80ms, box-shadow 80ms;
       }
 
       #message-form button:hover {
-        background: var(--accent-dark);
+        translate: 2px 2px;
+        box-shadow: 2px 2px 0 var(--border);
+      }
+
+      #message-form button:active {
+        translate: 4px 4px;
+        box-shadow: none;
       }
 
       #message-form textarea {
         padding: 0.5em;
-        border: 1px solid rgb(var(--gray-light));
+        border: 2px solid var(--border);
+        background: var(--bg);
+        color: rgb(var(--gray-dark));
         border-radius: 8px;
+        font-family: inherit;
+        font-size: 1em;
         resize: none;
         box-sizing: border-box;
+        box-shadow: var(--box-shadow);
       }
 
       #message-form textarea:focus {
