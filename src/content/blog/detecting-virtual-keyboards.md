@@ -206,4 +206,4 @@ document.addEventListener('DOMContentLoaded', initTextArea)
 </form>
 ```
 
-[Demo](/virtual-keyboards-demo/)
+<a href="/virtual-keyboards-demo/" class="btn">Demo</a>
