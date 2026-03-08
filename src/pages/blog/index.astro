@@ -22,11 +22,14 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				padding: 0;
 			}
+			ul li + li {
+				border-top: 3px solid var(--border);
+			}
 			ul li a {
 				display: block;
 				text-decoration: none;
 				color: rgb(var(--black));
-				padding: 0.4em 0;
+				padding: 1.25em 0;
 			}
 			ul li a:hover .title {
 				color: var(--accent);
