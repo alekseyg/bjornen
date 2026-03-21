@@ -6,6 +6,14 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">
+			<svg class="icon-menu" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+				<path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/>
+			</svg>
+			<svg class="icon-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+				<path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M5 5l14 14M19 5L5 19"/>
+			</svg>
+		</button>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -35,7 +43,13 @@ import HeaderLink from './HeaderLink.astro';
 			</a>
 		</div>
 	</nav>
+	<div class="mobile-menu">
+		<HeaderLink href="/">Home</HeaderLink>
+		<HeaderLink href="/blog">Blog</HeaderLink>
+		<HeaderLink href="/about">About</HeaderLink>
+	</div>
 </header>
+
 <style>
 	header {
 		margin: 0;
@@ -70,9 +84,74 @@ import HeaderLink from './HeaderLink.astro';
 	.social-links a {
 		display: flex;
 	}
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: 2px solid var(--border);
+		box-shadow: var(--box-shadow);
+		border-radius: 4px;
+		padding: 0.25em 0.4em;
+		cursor: pointer;
+		color: rgb(var(--black));
+		line-height: 0;
+		margin: 1em 0;
+	}
+	.icon-close {
+		display: none;
+	}
+	.menu-toggle[aria-expanded="true"] .icon-menu {
+		display: none;
+	}
+	.menu-toggle[aria-expanded="true"] .icon-close {
+		display: block;
+	}
+	.mobile-menu {
+		display: none;
+		flex-direction: column;
+		border-top: 2px solid var(--border);
+		margin: 0 -1em;
+		padding: 0.5em 0;
+	}
+	.mobile-menu a {
+		display: block;
+		padding: 0.75em 1em;
+		color: rgb(var(--black));
+		text-decoration: none;
+		border-bottom: none;
+		font-weight: 600;
+	}
+	.mobile-menu a:hover,
+	.mobile-menu a.active {
+		color: var(--accent);
+	}
 	@media (max-width: 720px) {
+		.internal-links,
 		.social-links {
 			display: none;
 		}
+		.menu-toggle {
+			display: block;
+		}
+		header.menu-open .mobile-menu {
+			display: flex;
+		}
 	}
 </style>
+
+<script>
+	const header = document.querySelector('header')!;
+	const toggle = header.querySelector('.menu-toggle')!;
+
+	toggle.addEventListener('click', () => {
+		const open = header.classList.toggle('menu-open');
+		toggle.setAttribute('aria-expanded', String(open));
+	});
+
+	// Close menu when a link is clicked
+	header.querySelectorAll('.mobile-menu a').forEach(link => {
+		link.addEventListener('click', () => {
+			header.classList.remove('menu-open');
+			toggle.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>
