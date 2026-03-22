@@ -52,14 +52,28 @@
 		box-shadow: var(--box-shadow) !important;
 		background: var(--bg) !important;
 		color: rgb(var(--gray-dark)) !important;
-		padding: 0.6em 0.8em !important;
+		padding: 0.6em 0.8em 0.6em 2.5em !important;
 	}
 	.pagefind-ui__search-input:focus {
 		outline: none !important;
 		border-color: var(--accent) !important;
 	}
-	.pagefind-ui__search-clear {
+	.pagefind-ui__search-icon {
 		color: rgb(var(--gray)) !important;
+		opacity: 1 !important;
+	}
+	.pagefind-ui__search-clear {
+		color: rgb(var(--gray-dark)) !important;
+		background: rgb(var(--gray-light)) !important;
+		border: 2px solid var(--border) !important;
+		border-radius: 4px !important;
+		padding: 0.15em 0.5em !important;
+		font-weight: 700 !important;
+		font-family: inherit !important;
+	}
+	.pagefind-ui__search-clear:focus {
+		outline: none !important;
+		border-color: var(--accent) !important;
 	}
 	.pagefind-ui__results-area {
 		margin-top: 1em !important;
