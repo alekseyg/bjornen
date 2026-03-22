@@ -14,18 +14,26 @@ main[data-astro-cid-j7pv25f6]{width:calc(100% - 2em);max-width:100%}.hero-image[
 			dialog.showModal();
 
 			if (!initialized) {
-				try {
-					var mod = await import('/pagefind/pagefind-ui.js');
-					new mod.PagefindUI({
+				initialized = true;
+				await new Promise(function(resolve) {
+					if (window.PagefindUI) { resolve(); return; }
+					var script = document.createElement('script');
+					script.src = '/pagefind/pagefind-ui.js';
+					script.onload = resolve;
+					script.onerror = function() {
+						document.getElementById('search').innerHTML =
+							'<p style="text-align:center;color:rgb(var(--gray))">Search is available on the built site.</p>';
+						resolve();
+					};
+					document.head.appendChild(script);
+				});
+				if (window.PagefindUI) {
+					new PagefindUI({
 						element: '#search',
 						showSubResults: true,
 						showImages: false,
 					});
-				} catch (e) {
-					document.getElementById('search').innerHTML =
-						'<p style="text-align:center;color:rgb(var(--gray))">Search is available on the built site.</p>';
 				}
-				initialized = true;
 			}
 
 			setTimeout(function() {
