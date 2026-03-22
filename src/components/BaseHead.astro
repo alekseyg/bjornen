@@ -14,7 +14,8 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title: rawTitle, description, image = FallbackImage } = Astro.props;
+const title = rawTitle === SITE_TITLE ? SITE_TITLE : `${rawTitle} - ${SITE_TITLE}`;
 ---
 
 <!-- Global Metadata -->
