@@ -62,8 +62,8 @@
 		background-color: rgb(var(--gray)) !important;
 		width: 20px !important;
 		height: 20px !important;
-		top: calc(50% - 10px) !important;
-		left: 12px !important;
+		top: calc(20px * var(--pagefind-ui-scale)) !important;
+		left: 14px !important;
 		opacity: 1 !important;
 	}
 	.pagefind-ui__search-clear {
@@ -75,7 +75,8 @@
 		height: 2em !important;
 		padding: 0 !important;
 		cursor: pointer !important;
-		position: relative !important;
+		right: calc(38px * var(--pagefind-ui-scale)) !important;
+		top: calc(14px * var(--pagefind-ui-scale)) !important;
 	}
 	.pagefind-ui__search-clear::before {
 		content: "\00d7" !important;
