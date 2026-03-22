@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	width?: number;
+}
+
+const { src, alt, width } = Astro.props;
+---
+
+<div class="phone-mockup">
+	<div class="phone-notch"></div>
+	<div class="phone-content">
+		<Image src={src} alt={alt} width={width || src.width} format="webp" quality={80} />
+	</div>
+	<div class="phone-home"></div>
+</div>
+
+<style>
+	.phone-mockup {
+		border: 3px solid var(--border);
+		box-shadow: var(--box-shadow);
+		border-radius: 20px;
+		overflow: hidden;
+		background: var(--bg);
+		padding: 8px;
+	}
+	.phone-notch {
+		width: 40%;
+		height: 6px;
+		margin: 4px auto 8px;
+		background: var(--border);
+		border-radius: 3px;
+	}
+	.phone-content {
+		line-height: 0;
+		border-radius: 4px;
+		overflow: hidden;
+	}
+	.phone-content img {
+		width: 100%;
+		height: auto;
+		border-radius: 0;
+	}
+	.phone-home {
+		width: 30%;
+		height: 4px;
+		margin: 8px auto 4px;
+		background: var(--border);
+		border-radius: 2px;
+	}
+</style>

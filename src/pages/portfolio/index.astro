@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import BrowserMockup from '../../components/BrowserMockup.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const projects = (await getCollection('portfolio'))
+	.sort((a, b) => b.data.year - a.data.year || b.data.sortOrder - a.data.sortOrder);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Portfolio" description="Selected projects and work." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1>Portfolio</h1>
+				<ul>
+					{projects.map((project) => (
+						<li>
+							<a href={`/portfolio/${project.id}/`}>
+								<div class="thumbnail">
+									<BrowserMockup src={project.data.desktopImage} alt={project.data.title} width={560} />
+								</div>
+								<div class="info">
+									<h3 class="title">{project.data.title}</h3>
+									<p class="year">{project.data.year}</p>
+									<p class="description">{project.data.description}</p>
+									<ul class="tech">
+										{project.data.technologies.slice(0, 4).map((tech) => (
+											<li>{tech}</li>
+										))}
+									</ul>
+								</div>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: calc(100% - 2em);
+		max-width: 900px;
+		margin: 0 auto;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	ul > li + li {
+		border-top: 3px solid var(--border);
+	}
+	ul > li > a {
+		display: flex;
+		gap: 2em;
+		align-items: flex-start;
+		text-decoration: none;
+		color: rgb(var(--black));
+		padding: 1.5em 0;
+	}
+	ul > li > a:hover .title {
+		color: var(--accent);
+	}
+	.thumbnail {
+		flex: 0 0 280px;
+	}
+	.info {
+		flex: 1;
+		min-width: 0;
+	}
+	.title {
+		margin: 0 0 0.25em;
+	}
+	.year {
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.85em;
+	}
+	.description {
+		margin: 0.5em 0;
+		color: rgb(var(--gray-dark));
+		font-size: 0.95em;
+	}
+	.tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4em;
+		list-style: none;
+		padding: 0;
+		margin: 0.75em 0 0;
+	}
+	.tech li {
+		font-size: 0.75em;
+		font-weight: 700;
+		padding: 0.2em 0.5em;
+		border: 2px solid var(--border);
+		border-radius: 4px;
+	}
+	@media (max-width: 720px) {
+		ul > li > a {
+			flex-direction: column;
+		}
+		.thumbnail {
+			flex: none;
+			width: 100%;
+		}
+	}
+</style>

@@ -1,0 +1,163 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import BrowserMockup from '../../components/BrowserMockup.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import PhoneMockup from '../../components/PhoneMockup.astro';
+
+export async function getStaticPaths() {
+	const projects = await getCollection('portfolio');
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: project,
+	}));
+}
+
+type Props = CollectionEntry<'portfolio'>;
+
+const project = Astro.props;
+const { title, description, technologies, year, desktopImage, mobileImage, url, urlLabel, sourceUrl, role } = project.data;
+const { Content } = await render(project);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} — Portfolio`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="project-header">
+				<h1>{title}</h1>
+				<p class="meta">
+					{year}{role && <> &middot; {role}</>}
+				</p>
+			</div>
+
+			<div class={`mockups ${mobileImage ? 'has-mobile' : 'desktop-only'}`}>
+				<div class="desktop">
+					<BrowserMockup src={desktopImage} alt={`${title} — desktop`} width={1400} />
+				</div>
+				{mobileImage && (
+					<div class="mobile">
+						<PhoneMockup src={mobileImage} alt={`${title} — mobile`} width={400} />
+					</div>
+				)}
+			</div>
+
+			<div class="details">
+				<div class="prose">
+					<Content />
+				</div>
+
+				<aside>
+					<h3>Technologies</h3>
+					<ul class="tech-list">
+						{technologies.map((tech) => <li>{tech}</li>)}
+					</ul>
+
+					{(url || sourceUrl) && (
+						<h3>Links</h3>
+						<div class="links">
+							{url && <a href={url} target="_blank" class="btn">{urlLabel}</a>}
+							{sourceUrl && <a href={sourceUrl} target="_blank" class="btn">Source</a>}
+						</div>
+					)}
+				</aside>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: calc(100% - 2em);
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2em 0;
+	}
+	.project-header {
+		margin-bottom: 2em;
+	}
+	.project-header h1 {
+		margin-bottom: 0.25em;
+	}
+	.meta {
+		color: rgb(var(--gray));
+		margin: 0;
+	}
+	.mockups {
+		display: flex;
+		align-items: flex-end;
+		gap: 2em;
+		margin-bottom: 2.5em;
+	}
+	.mockups.has-mobile .desktop {
+		flex: 1;
+		min-width: 0;
+	}
+	.mockups.has-mobile .mobile {
+		flex: 0 0 22%;
+	}
+	.mockups.desktop-only .desktop {
+		max-width: 720px;
+	}
+	.details {
+		display: flex;
+		gap: 2em;
+	}
+	.prose {
+		flex: 1;
+		color: rgb(var(--gray-dark));
+	}
+	aside {
+		flex: 0 0 200px;
+	}
+	aside h3 {
+		margin-top: 0;
+	}
+	.tech-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5em;
+	}
+	.tech-list li {
+		padding: 0.2em 0;
+		font-size: 0.9em;
+		color: rgb(var(--gray-dark));
+	}
+	.tech-list li::before {
+		content: "— ";
+		color: var(--accent);
+		font-weight: 700;
+	}
+	.links {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+	}
+	.links .btn {
+		text-align: center;
+		font-size: 0.9em;
+	}
+	@media (max-width: 720px) {
+		.mockups {
+			flex-direction: column;
+			align-items: stretch;
+		}
+		.mockups.has-mobile .mobile {
+			flex: none;
+			width: 45%;
+			margin: 0 auto;
+		}
+		.details {
+			flex-direction: column;
+		}
+		aside {
+			flex: none;
+		}
+	}
+</style>

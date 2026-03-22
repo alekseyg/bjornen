@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	src: ImageMetadata;
+	alt: string;
+	width?: number;
+}
+
+const { src, alt, width } = Astro.props;
+---
+
+<div class="browser-mockup">
+	<div class="browser-chrome">
+		<span class="dot"></span>
+		<span class="dot"></span>
+		<span class="dot"></span>
+	</div>
+	<div class="browser-content">
+		<Image src={src} alt={alt} width={width || src.width} format="webp" quality={80} />
+	</div>
+</div>
+
+<style>
+	.browser-mockup {
+		border: 3px solid var(--border);
+		box-shadow: var(--box-shadow);
+		border-radius: 8px;
+		overflow: hidden;
+		background: var(--bg);
+	}
+	.browser-chrome {
+		display: flex;
+		gap: 6px;
+		padding: 10px 12px;
+		border-bottom: 3px solid var(--border);
+		background: rgb(var(--gray-light));
+	}
+	.dot {
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		border: 2px solid var(--border);
+		background: var(--accent);
+	}
+	.dot:nth-child(2) {
+		background: rgb(var(--gray-dark));
+	}
+	.dot:nth-child(3) {
+		background: var(--bg);
+	}
+	.browser-content {
+		line-height: 0;
+	}
+	.browser-content img {
+		width: 100%;
+		height: auto;
+		border-radius: 0;
+	}
+</style>
