@@ -24,7 +24,11 @@ const projects = (await getCollection('portfolio'))
 						<li>
 							<a href={`/portfolio/${project.id}/`}>
 								<div class="thumbnail">
-									<BrowserMockup src={project.data.desktopImage} alt={project.data.title} width={560} />
+									<BrowserMockup
+										src={project.data.desktopImage}
+										alt={project.data.title}
+										width={560}
+									/>
 								</div>
 								<div class="info">
 									<h3 class="title">{project.data.title}</h3>

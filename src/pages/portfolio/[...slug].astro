@@ -17,7 +17,18 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'portfolio'>;
 
 const project = Astro.props;
-const { title, description, technologies, year, desktopImage, mobileImage, url, urlLabel, sourceUrl, role } = project.data;
+const {
+  title,
+  description,
+  technologies,
+  year,
+  desktopImage,
+  mobileImage,
+  url,
+  urlLabel,
+  sourceUrl,
+  role,
+} = project.data;
 const { Content } = await render(project);
 ---
 
