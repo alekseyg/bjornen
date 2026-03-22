@@ -58,22 +58,33 @@
 		outline: none !important;
 		border-color: var(--accent) !important;
 	}
-	.pagefind-ui__search-icon {
-		color: rgb(var(--gray)) !important;
+	.pagefind-ui__form::before {
+		background-color: rgb(var(--gray)) !important;
+		width: 20px !important;
+		height: 20px !important;
+		top: calc(50% - 10px) !important;
+		left: 12px !important;
 		opacity: 1 !important;
 	}
 	.pagefind-ui__search-clear {
-		color: rgb(var(--gray-dark)) !important;
-		background: rgb(var(--gray-light)) !important;
-		border: 2px solid var(--border) !important;
-		border-radius: 4px !important;
-		padding: 0.15em 0.5em !important;
-		font-weight: 700 !important;
-		font-family: inherit !important;
+		background: transparent !important;
+		color: rgb(var(--gray)) !important;
+		border: none !important;
+		font-size: 0 !important;
+		width: 2em !important;
+		height: 2em !important;
+		padding: 0 !important;
+		cursor: pointer !important;
+		position: relative !important;
 	}
-	.pagefind-ui__search-clear:focus {
-		outline: none !important;
-		border-color: var(--accent) !important;
+	.pagefind-ui__search-clear::before {
+		content: "\00d7" !important;
+		font-size: 1.5rem !important;
+		line-height: 1 !important;
+		color: rgb(var(--gray-dark)) !important;
+	}
+	.pagefind-ui__search-clear:hover::before {
+		color: var(--accent) !important;
 	}
 	.pagefind-ui__results-area {
 		margin-top: 1em !important;
