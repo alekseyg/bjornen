@@ -68,10 +68,10 @@ const projects = (await getCollection('portfolio'))
 		margin: 0;
 		padding: 0;
 	}
-	ul > li + li {
+	section > ul > li + li {
 		border-top: 3px solid var(--border);
 	}
-	ul > li > a {
+	section > ul > li > a {
 		display: flex;
 		gap: 2em;
 		align-items: flex-start;
@@ -79,7 +79,7 @@ const projects = (await getCollection('portfolio'))
 		color: rgb(var(--black));
 		padding: 1.5em 0;
 	}
-	ul > li > a:hover .title {
+	section > ul > li > a:hover .title {
 		color: var(--accent);
 	}
 	.thumbnail {
