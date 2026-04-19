@@ -1,0 +1,150 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Uses"
+			description="The hardware and software I use day to day."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Uses</h1>
+			<p class="intro">
+				A snapshot of the hardware and software I reach for day to day.
+			</p>
+
+			<section>
+				<h2>Hardware</h2>
+				<dl>
+					<dt>Computer</dt>
+					<dd>2021 16" MacBook Pro — M1 Pro, 32GB RAM</dd>
+
+					<dt>Monitor</dt>
+					<dd>Asus ROG Swift PG32UQR</dd>
+
+					<dt>Keyboards</dt>
+					<dd>
+						I rotate between two custom mechanical boards:
+						<ul>
+							<li>
+								<strong>Qwertykeys Neo70</strong> — KTT Matcha tactile switches, with
+								whichever green keycaps I feel like using that day.
+							</li>
+							<li>
+								<strong>Meletrix Zoom65 V3</strong> — Gateron Jupiter Banana tactile
+								switches, WS Lavender keycaps from Meletrix.
+							</li>
+						</ul>
+						Almost all of my keycaps are double-shot PBT in Cherry profile.
+					</dd>
+
+					<dt>Pointing devices</dt>
+					<dd>
+						The built-in trackpad most of the time. Occasionally an external Apple
+						Magic Trackpad, and on even rarer occasions a Logitech M720 Marathon
+						mouse.
+					</dd>
+
+					<dt>Microphone &amp; webcam</dt>
+					<dd>Whatever is built into the Mac — I haven't felt the need to upgrade.</dd>
+
+					<dt>Speakers</dt>
+					<dd>Creative Pebble V3</dd>
+
+					<dt>Desk</dt>
+					<dd>IKEA Bekant sit/stand</dd>
+
+					<dt>Chair</dt>
+					<dd>Haworth Fern</dd>
+
+					<dt>Phone</dt>
+					<dd>
+						iPhone 13 mini, which I intend to use until it dies or Apple releases
+						another small phone.
+					</dd>
+				</dl>
+			</section>
+
+			<section>
+				<h2>Software</h2>
+				<dl>
+					<dt>Editor</dt>
+					<dd>Zed</dd>
+
+					<dt>Terminal</dt>
+					<dd>Ghostty</dd>
+
+					<dt>Theme</dt>
+					<dd>Snazzy, in both the editor and the terminal.</dd>
+
+					<dt>Shell</dt>
+					<dd>zsh</dd>
+
+					<dt>Browsers</dt>
+					<dd>Safari for personal use, Chrome for development.</dd>
+
+					<dt>Git GUI</dt>
+					<dd>Fork</dd>
+
+					<dt>Fonts</dt>
+					<dd>
+						Apple's SF family — SF Pro for UI, SF Mono for buffers and the terminal.
+					</dd>
+				</dl>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: calc(100% - 2em);
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2em 0;
+	}
+	h1 {
+		margin-top: 0;
+	}
+	.intro {
+		color: rgb(var(--gray-dark));
+		margin-bottom: 2em;
+	}
+	section {
+		margin-bottom: 2.5em;
+	}
+	section h2 {
+		border-bottom: 3px solid var(--border);
+		padding-bottom: 0.25em;
+		margin-bottom: 1em;
+	}
+	dl {
+		margin: 0;
+	}
+	dt {
+		font-weight: 700;
+		margin-top: 1em;
+	}
+	dt:first-child {
+		margin-top: 0;
+	}
+	dd {
+		margin: 0.25em 0 0;
+		color: rgb(var(--gray-dark));
+	}
+	dd ul {
+		margin: 0.5em 0;
+		padding-left: 1.25em;
+	}
+	dd ul li {
+		margin-bottom: 0.25em;
+	}
+</style>
