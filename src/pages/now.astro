@@ -1,0 +1,89 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Now"
+			description="What I'm up to these days — work, side projects, and life outside of code."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Now</h1>
+			<p class="updated">Last updated: April 2026</p>
+
+			<h2>Work</h2>
+			<p>
+				I'm a senior software engineer at <a href="https://pledge.to/" target="_blank">Pledge</a>,
+				a fundraising platform for charity. I recently wrapped up an overhaul of the
+				payment and billing systems and have now moved on to building a new
+				donation form.
+			</p>
+
+			<h2>Side projects</h2>
+			<p>
+				Rebuilding this website in Astro, using it as a bit of a playground to try
+				out new tools along the way.
+			</p>
+
+			<h2>Outside of code</h2>
+			<p>
+				I try to cook for myself as much as I can. Vietnamese and Mexican are my
+				current favorite cuisines, and soup is where I like to let Mexican and
+				Slavic cooking collide. I also like hiking, but I currently
+				live far from the mountains, something I'm hoping to change before too
+				long.
+			</p>
+
+			<h2>Reading, learning, listening</h2>
+			<p>
+				Currently reading the <em>Hávamál</em>. Learning about fascia and a few
+				other health topics. On heavy rotation these days: Winona Oak, DJ Goja,
+				and Malte Marten.
+			</p>
+
+			<p class="footnote">
+				This is a <a href="https://nownownow.com/about" target="_blank">/now page</a>
+				— a snapshot of what I'm currently focused on, updated every so often.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: calc(100% - 2em);
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2em 0;
+	}
+	h1 {
+		margin-top: 0;
+		margin-bottom: 0.25em;
+	}
+	.updated {
+		color: rgb(var(--gray));
+		margin: 0 0 2em;
+	}
+	h2 {
+		margin-top: 2em;
+		margin-bottom: 0.5em;
+	}
+	p {
+		color: rgb(var(--gray-dark));
+	}
+	.footnote {
+		margin-top: 3em;
+		padding-top: 1em;
+		border-top: 2px solid var(--border);
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+</style>
