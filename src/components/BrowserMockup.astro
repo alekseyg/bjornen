@@ -5,9 +5,13 @@ interface Props {
 	src: ImageMetadata;
 	alt: string;
 	width?: number;
+	additionalSrcs?: ImageMetadata[];
 }
 
-const { src, alt, width } = Astro.props;
+const { src, alt, width, additionalSrcs } = Astro.props;
+const allSrcs = [src, ...(additionalSrcs ?? [])];
+const isCarousel = allSrcs.length > 1;
+const totalDuration = allSrcs.length * 4;
 ---
 
 <div class="browser-mockup">
@@ -16,8 +20,19 @@ const { src, alt, width } = Astro.props;
 		<span class="dot"></span>
 		<span class="dot"></span>
 	</div>
-	<div class="browser-content">
-		<Image src={src} alt={alt} width={width || src.width} format="avif" quality={80} />
+	<div class={`browser-content ${isCarousel ? 'carousel' : ''}`}>
+		{allSrcs.map((s, i) => (
+			<Image
+				src={s}
+				alt={alt}
+				width={width || s.width}
+				format="avif"
+				quality={80}
+				style={isCarousel
+					? `animation-duration: ${totalDuration}s; animation-delay: ${i * 4 - 1}s;`
+					: undefined}
+			/>
+		))}
 	</div>
 </div>
 
@@ -56,5 +71,34 @@ const { src, alt, width } = Astro.props;
 		width: 100%;
 		height: auto;
 		border-radius: 0;
+	}
+	.browser-content.carousel {
+		position: relative;
+	}
+	.browser-content.carousel img {
+		animation-name: fade;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: backwards;
+	}
+	.browser-content.carousel img:not(:first-child) {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+	}
+	@keyframes fade {
+		0% { opacity: 0; }
+		8% { opacity: 1; }
+		33% { opacity: 1; }
+		41% { opacity: 0; }
+		100% { opacity: 0; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.browser-content.carousel img {
+			animation: none;
+		}
+		.browser-content.carousel img:not(:first-child) {
+			display: none;
+		}
 	}
 </style>

@@ -23,6 +23,7 @@ const {
   technologies,
   year,
   desktopImage,
+  additionalDesktopImages,
   mobileImage,
   url,
   urlLabel,
@@ -49,7 +50,7 @@ const { Content } = await render(project);
 
 			<div class={`mockups ${mobileImage ? 'has-mobile' : 'desktop-only'}`}>
 				<div class="desktop">
-					<BrowserMockup src={desktopImage} alt={`${title} — desktop`} width={1400} />
+					<BrowserMockup src={desktopImage} additionalSrcs={additionalDesktopImages} alt={`${title} — desktop`} width={1400} />
 				</div>
 				{mobileImage && (
 					<div class="mobile">

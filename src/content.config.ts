@@ -25,6 +25,7 @@ const portfolio = defineCollection({
 			technologies: z.array(z.string()),
 			year: z.number(),
 			desktopImage: image(),
+			additionalDesktopImages: z.array(image()).optional(),
 			mobileImage: image().optional(),
 			url: z.string().url().optional(),
 			urlLabel: z.string().default('Visit site'),
